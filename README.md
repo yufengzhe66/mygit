@@ -1,2 +1,2 @@
 # mygit
-linux
+data structure and algorithm
