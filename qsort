@@ -1,35 +1,45 @@
-#include <stdio.h>
+#include<iostream>
+using namespace std;
 
-int a[100],n,temp;
-
-void QuickSort(int h,int t)
+void swap(int arr[], int i,int j)
 {
-     if(h>=t) return;
-     int mid=(h+t)/2,i=h,j=t,x;
-     x=a[mid];
-     while(1)
-     {
-         while(a[i]<x) i++;
-         while(a[j]>x) j--;
-         if(i>=j) break;
-         temp=a[i];
-         a[i]=a[j];
-         a[j]=temp;
-     }
-     a[mid]=a[j];
-     a[j]=x;
-     QuickSort(h,j-1);
-     QuickSort(j+1,t);
-     return;
+int t=arr[i];
+arr[i]=arr[j];
+arr[j]=t;
+}
+
+int partition(int arr[], int left,int right)
+{
+int i=left;
+int j=right+1;
+int x=arr[left];
+int q=left;
+while(1)
+{
+while(i<j&&arr[++i]>x);
+while(arr[--j]<x);
+if(i>=j)break;
+swap(arr,i,j);
+}
+swap(arr,q,j);
+return j;
+}
+
+void qsort(int arr[], int left,int right)
+{if(left<right){
+int q=partition(arr,left,right);
+qsort(arr,left,q-1);
+qsort(arr,q+1,right);
+}
 }
 
 int main()
 {
-     int i;
-     scanf("%d",&n);
-     for(i=0;i<n;i++) scanf("%d",&a[i]);
-     QuickSort(0,n-1);
-     for(i=0;i<n;i++) printf("%d ",a[i]);
+   int arr[]={5,4,8,7,9,2,6,1,3};
+qsort(arr,0,8);
+for(int i=0;i<9;i++)
+cout<<arr[i]<<" ";
+cout<<endl;
+return 0;
 
-     return(0);
 }
