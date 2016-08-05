@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+
+void merge(int vec[], int arr[], int left,int right,int middle)
+{
+	int i=left;
+	int j=middle+1;
+	int k=0;
+	while(i<=middle&&j<=right)
+	{
+		if(arr[i]>arr[j])
+		{
+			vec[k]=arr[j];
+			k++;j++;
+		}
+		else
+		{
+			vec[k]=arr[i];
+			k++;i++;
+		}
+	}
+	
+	if(i<=middle){for(;i<=middle;i++,k++)vec[k]=arr[i];}
+	if(j<=right){for(;j<=right;j++,k++)vec[k]=arr[j];}
+}
+
+void mcopy(int vec[], int arr[], int left,int right)
+{
+	int i=0;
+	int j=left;
+	for(;j<=right;i++,j++)
+	{
+		arr[j]=vec[i];
+	}
+
+}
+
+void mergesort(int vec[],int arr[], int left, int right)
+{
+if(left<right)
+{
+int middle=(right+left)/2;
+mergesort(vec,arr,left,middle);
+mergesort(vec,arr,middle+1,right);
+merge(vec,arr,left,right,middle);
+mcopy(vec,arr,left,right);
+}
+}
+
+
+int main()
+{
+	int arr[]={9,8,7,6,5,4,3,2,1};
+	int vec[9];
+	mergesort(vec,arr,0,8);
+	for(int i=0; i<9; i++)
+		cout<<arr[i]<<" ";
+	cout<<endl;
+	return 0;
+}
