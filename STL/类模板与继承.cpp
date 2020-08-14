@@ -22,6 +22,8 @@ public:
 	}
 };
 
+
+//类模板继承类模板 ,可以用T2指定父类中的T类型
 template<class T1,class T2>
 class son2 :public base<T2>
 {
@@ -42,8 +44,3 @@ void test09()
 	s1.show();
 }
 
-int main()
-{
-	test09();
-	return 0;
-}
