@@ -16,9 +16,10 @@ void test18()
 	for (int i = 0; i < 10000; i++)
 	{
 		v.push_back(i);
+		//统计内存进行了内存扩展的次数
 		if (p != &v[0])
 		{
-			p != &v[0];
+			p = &v[0];
 			num++;
 		}
 	}
