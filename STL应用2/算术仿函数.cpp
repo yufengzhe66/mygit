@@ -22,9 +22,3 @@ void test17()
 	plus<int> add;
 	cout << add(10, 20) << endl;
 }
-int main()
-{
-	test17();
-	system("pause");
-	return 0;
-}
